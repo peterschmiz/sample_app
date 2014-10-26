@@ -20,5 +20,15 @@ Rails.application.configure do
   config.action_mailer.default_url_options = { host: host }
   config.action_mailer.raise_delivery_errors = true
   config.action_mailer.perform_deliveries = true
+  config.action_mailer.delivery_method = :smtp
 
+  ActionMailer::Base.smtp_settings = {
+	  :address        => 'smtp.googlemail.com',
+	  :port           => 587,
+	  :authentication => :plain,
+	  :user_name      => ENV['GMAIL_USERNAME'],
+	  :password       => ENV['GMAIL_PASSWORD'],
+	  :domain         => 'herokuapp.com',
+	  :enable_starttls_auto => true
+  }
 end
